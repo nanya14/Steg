@@ -5,6 +5,7 @@ function Encode() {
   const [listOfUsers, setListOfUsers] = useState([]);
   const [text, setText] = useState("");
   const [pic, setPic] = useState("");
+  //const [encodedPic, setEncodedPic] = useState("");
 
   useEffect(() => {
     Axios.get("http://localhost:3001/getUsers").then((response) => {
@@ -14,7 +15,7 @@ function Encode() {
 
   const createUser = () => {
     let variable = document.getElementById("img").files[0].name;
-    //console.log(variable);
+    console.log(variable);
     Axios.post("http://localhost:3001/createUser", {
       text,
       //pic,
@@ -28,6 +29,21 @@ function Encode() {
         },
       ]);
     });
+    Axios.post("http://localhost:3001/encode", {
+      text,
+      //pic,
+      pic: variable,
+    }).then((response) => {
+      setListOfUsers([
+        ...listOfUsers,
+        {
+          text,
+          pic,
+        },
+      ]);
+    });
+
+    window.location.reload(false);
   };
 
   return (
@@ -56,6 +72,9 @@ function Encode() {
                 <br />
                 <br />
                 <button onClick={createUser}> Encode </button>
+                <div className="col-md-6 order-1 order-md-2">
+                  <img className="img-fluid" src="images/output.png" alt="" />
+                </div>
               </div>
             </div>
           </div>

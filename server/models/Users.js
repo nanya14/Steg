@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // encpic: {
+  //   type: String,
+  //   required: false,
+  // },
   psnr: {
     type: Number,
     required: false,

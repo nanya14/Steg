@@ -1,0 +1,8 @@
+imageio==2.4.1
+reedsolo==0.3
+scipy
+tqdm==4.28.1
+numpy
+Pillow
+torch
+torchvision
