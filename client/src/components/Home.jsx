@@ -4,7 +4,7 @@ function Home() {
   return (
     <>
       <div className="home">
-        <div className="container-fluid px-0">
+        <div className="container-lg">
           <div className="row align-items-center content">
             <div className="col-md-6 text-center order-1 order-md-1">
               <div className="row justify-content-center">
@@ -27,7 +27,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="container-fluid px-0">
+      <div className="container-lg">
         <div className="row align-items-center content">
           <div className="col-md-6 order-2 order-md-1">
             <img className="img-fluid" src="images/steg2.png" alt="" />

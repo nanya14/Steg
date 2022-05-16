@@ -25,37 +25,50 @@ app.get("/getUsers", (req, res) => {
 });
 
 app.post("/encode", (req, res) => {
-  //console.log("henlo");
+  // let outputFilename = req.body.pic;
+  // outputFilename = outputFilename.split(".")[0];
   const python = spawn("python3", [
     "basic.py",
     req.body.text,
     "/Users/ananya/Documents/College/Projects/FYP/DIV2K_train_HR/" +
       req.body.pic,
+    // outputFilename,
   ]);
   console.log(req.body.text);
   console.log(req.body.pic);
-  // in close event we are sure that stream from child process is closed
 });
 
-// app.get("/", (req, res) => {
-//   res.send("hello");
+// app.post("/decode", (req, res) => {
+//   const python = spawn("python3", [
+//     "basic.py",
+//     "/Users/ananya/Documents/Intern/mern/client/public/images/" +
+//       req.body.encpic,
+//   ]);
+//   console.log(req.body.encpic);
 // });
 
 app.post("/createUser", async (req, res) => {
-  //console.log("hi");
   let user = req.body;
-  //let pic = req.body.pic;
-  //let encpic = req.body.encpic;
   const plainData = fs.readFileSync(
     "/Users/ananya/Documents/College/Projects/FYP/DIV2K_train_HR/" + user.pic
   );
-  //const plainData = fs.readFileSync(user.pic);
   const base64Data = new Buffer.from(plainData).toString("base64");
   user.pic = base64Data;
-  //user.encpic = base64Data;
   const newUser = new UserModel(user);
   await newUser.save();
-  // spawn new child process to call the python script
+  res.json(user);
+  console.log("Inserted into DB!");
+});
+
+app.post("/createUser2", async (req, res) => {
+  let user = req.body;
+  const plainData2 = fs.readFileSync(
+    "/Users/ananya/Documents/Intern/mern/client/public/images/" + user.encpic
+  );
+  const base64Data2 = new Buffer.from(plainData2).toString("base64");
+  user.encpic = base64Data2;
+  const newUser = new UserModel(user);
+  await newUser.save();
   res.json(user);
   console.log("Inserted into DB!");
 });

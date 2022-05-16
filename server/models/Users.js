@@ -3,34 +3,14 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   text: {
     type: String,
-    required: true,
+    required: false,
   },
   pic: {
     type: String,
-    required: true,
-  },
-  // encpic: {
-  //   type: String,
-  //   required: false,
-  // },
-  psnr: {
-    type: Number,
     required: false,
   },
-  ssim: {
-    type: Number,
-    required: false,
-  },
-  loss: {
-    type: Number,
-    required: false,
-  },
-  accuracy: {
-    type: Number,
-    required: false,
-  },
-  payload: {
-    type: Number,
+  encpic: {
+    type: String,
     required: false,
   },
 });
